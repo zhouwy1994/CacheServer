@@ -6,7 +6,7 @@ import (
 )
 
 func main() {
-	c := cache.New("inMemory")
+	c := cache.New("inmemory")
 	s := tcp.New(c)
 	s.Listen()
 }

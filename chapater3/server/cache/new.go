@@ -4,7 +4,7 @@ import "log"
 
 func New(typ string) Cache {
 	var c Cache
-	if typ == "inMemory" {
+	if typ == "inmemory" {
 		c = newInMemoryCache()
 	}
 
