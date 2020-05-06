@@ -1,8 +1,8 @@
 package cache
 
 // #include "rocksdb/c.h"
-// #cgo CFLAGS: -I../../rocksdb/include
-// #cgo LDFLAGS: -L../../rocksdb -lrocksdb -lz -lpthread -lsnappy -lstdc++ -lm -O3
+// #cgo CFLAGS: -I../../../rocksdb/include
+// #cgo LDFLAGS: -L../../../rocksdb -lrocksdb -lz -lpthread -lsnappy -lstdc++ -lm -O3
 import "C"
 
 type rocksdbCache struct {
