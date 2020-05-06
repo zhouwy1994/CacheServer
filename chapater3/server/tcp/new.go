@@ -2,7 +2,7 @@ package tcp
 
 import (
 	"fmt"
-	"github.com/zhouwy1994/CacheServer/chapater2/server/cache"
+	"github.com/zhouwy1994/CacheServer/chapater3/server/cache"
 	"net"
 )
 
