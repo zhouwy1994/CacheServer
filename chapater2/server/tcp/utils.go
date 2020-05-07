@@ -3,6 +3,7 @@ package tcp
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"net"
 	"strconv"
 	"strings"
@@ -26,10 +27,11 @@ func sendResponse(value []byte, err error, conn net.Conn) error {
 	if err != nil {
 		errString := err.Error()
 		tmp := fmt.Sprintf("-%d ", len(errString)) + errString
-		_, e := conn.Write([]byte(tmp))
-		return e
+		_, err = io.WriteString(conn, tmp)
+		return err
 	}
-	vlen := fmt.Sprintf("%d ", len(value))
-	_, e := conn.Write(append([]byte(vlen), value...))
-	return e
+
+	tmp := fmt.Sprintf("%d ", len(value))
+	_,err = conn.Write(append([]byte(tmp), value...))
+	return err
 }

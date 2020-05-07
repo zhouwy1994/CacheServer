@@ -38,27 +38,27 @@ func (s *Server) del(conn net.Conn, r *bufio.Reader) error {
 func (s *Server) process(conn net.Conn) {
 	defer conn.Close()
 	r := bufio.NewReader(conn)
-	op, err := r.ReadByte()
-	if err != nil {
-		if err != io.EOF {
-			log.Println("close connection due to error:", err)
+	for {
+		op, e := r.ReadByte()
+		if e != nil {
+			if e != io.EOF {
+				log.Println("close connection due to error:", e)
+			}
+			return
 		}
-		return
-	}
-
-	if op == 'S' {
-		err = s.set(conn, r)
-	} else if op == 'G' {
-		err = s.get(conn, r)
-	} else if op == 'D' {
-		err = s.del(conn, r)
-	} else {
-		log.Println("close connection due to invalid op:", op)
-		return
-	}
-
-	if err != nil {
-		log.Println("close connection due to:", err)
-		return
+		if op == 'S' {
+			e = s.set(conn, r)
+		} else if op == 'G' {
+			e = s.get(conn, r)
+		} else if op == 'D' {
+			e = s.del(conn, r)
+		} else {
+			log.Println("close connection due to invalid operation:", op)
+			return
+		}
+		if e != nil {
+			log.Println("close connection due to error:", e)
+			return
+		}
 	}
 }
