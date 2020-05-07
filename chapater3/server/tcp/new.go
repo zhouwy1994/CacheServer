@@ -1,7 +1,6 @@
 package tcp
 
 import (
-	"fmt"
 	"github.com/zhouwy1994/CacheServer/chapater3/server/cache"
 	"net"
 )
@@ -15,14 +14,13 @@ func New(c cache.Cache) *Server {
 }
 
 func (s *Server) Listen() {
-	listener, err := net.Listen("tcp4", ":3568")
+	listener, err := net.Listen("tcp", ":3568")
 	if err != nil {
 		panic(err)
 	}
 
 	for {
 		conn,err := listener.Accept()
-		fmt.Println(conn.RemoteAddr().String())
 		if err != nil {
 			panic(err)
 		}
