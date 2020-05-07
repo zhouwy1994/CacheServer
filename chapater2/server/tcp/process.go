@@ -42,8 +42,8 @@ func (s *Server) process(conn net.Conn) {
 	if err != nil {
 		if err != io.EOF {
 			log.Println("close connection due to error:", err)
-			return
 		}
+		return
 	}
 
 	if op == 'S' {
